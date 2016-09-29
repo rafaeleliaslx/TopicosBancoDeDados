@@ -16,7 +16,7 @@ import model.Imagem;
 public class Main {
     
     public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException, ImageProcessingException{
-        String path = "C:\\Users\\Assis Moraes\\Desktop\\2.jpg";
+        String path = "imgteste.jpg";
         ImagemController ic = new ImagemController();
         //Imagem img = new Imagem(path);
         //ic.adicionar(img);
