@@ -18,8 +18,8 @@ public class Main {
     public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException, ImageProcessingException{
         String path = "imgteste.jpg";
         ImagemController ic = new ImagemController();
-        //Imagem img = new Imagem(path);
-        //ic.adicionar(img);
+        Imagem img = new Imagem(path);
+        ic.adicionar(img);
         ic.getImg(6);
     }
     
