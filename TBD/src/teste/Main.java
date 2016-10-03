@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package teste;
 
 
@@ -16,11 +10,11 @@ import model.Imagem;
 public class Main {
     
     public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException, ImageProcessingException{
-        String path = "/home/rafaeleliaslx/workspace/TopicosBancoDeDados/TBD/src/teste/imgteste.dng";
+        String path = "C:\\Users\\Assis Moraes\\Desktop\\2.jpg";
         ImagemController ic = new ImagemController();
-        Imagem img = new Imagem(path);
-        ic.adicionar(img);
-      //  ic.getImg(6);
+        //Imagem img = new Imagem(path);
+        //ic.adicionar(img);
+        ic.getImg(6);
     }
     
 }
