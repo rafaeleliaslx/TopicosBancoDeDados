@@ -10,7 +10,7 @@ public class Conexao {
     
     public static void conectar() throws SQLException, ClassNotFoundException{
         Class.forName("com.mysql.jdbc.Driver"); 
-        Conexao.conexao = DriverManager.getConnection("jdbc:mysql://localhost/tbd","root","");
+        Conexao.conexao = DriverManager.getConnection("jdbc:mysql://localhost/img","root","");
         System.out.println("Conectado! ");
     }
     
