@@ -29,17 +29,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `img` (
   `id` int(11) NOT NULL,
   `nome` varchar(1000) NOT NULL,
-  `url` varchar(100) NOT NULL,
+  `criacao` varchar(50) NOT NULL,
   `extensao` varchar(20) NOT NULL,
-  `conteudo` longblob NOT NULL,
   `tamanho` bigint(20) NOT NULL,
-  `propriedades` longtext NOT NULL,
   `altura` varchar(100) NOT NULL,
   `largura` varchar(100) NOT NULL,
-  `criacao` varchar(50) NOT NULL,
   `iso` varchar(200) NOT NULL,
   `abertura` varchar(200) NOT NULL,
-  `velocidade` varchar(200) NOT NULL
+  `velocidade` varchar(200) NOT NULL,
+  `conteudo` longblob NOT NULL,
+  `propriedades` longtext NOT NULL,
+  `url` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

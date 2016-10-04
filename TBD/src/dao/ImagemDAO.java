@@ -26,18 +26,18 @@ public class ImagemDAO {
         ps = Conexao.conexao.prepareStatement("INSERT INTO img VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");//Prepara a query de inserção
         ps.setInt(1, 0);//Seta o valor do ID(no caso é desnecessário. Feito só pra nada mesmo)
         ps.setString(2, img.getNome());////Seta nome da imagem na segunda coluna da tabela 'img'
-        ps.setString(3, img.getUrl());//Seta url da imagem na terceira coluna da tabela 'img'
+        ps.setString(3, img.getCriacao());
         ps.setString(4, img.getExtensao());//Seta extensao da imagem na quarta coluna da tabela 'img'
-        ps.setBinaryStream(5,(InputStream)fin,(int)imgfile.length());//Seta conteudo da imagem na quinta coluna da tabela 'img'
-        ps.setLong(6, img.getTamanho());//Seta tamanho da imagem na sexta coluna da tabela 'img'
-        ps.setString(7, img.getMetadados());//Seta string com metadados da imagem na sétima coluna da tabela 'img'
-        ps.setString(8, img.getAltura());
-        ps.setString(9, img.getLargura());
-        ps.setString(10, img.getCriacao());
-        ps.setString(11, img.getIso());
-        ps.setString(12, img.getAbertura());
-        ps.setString(13, img.getVelocidade());
-        
+        ps.setLong(5, img.getTamanho());//Seta tamanho da imagem na sexta coluna da tabela 'img'
+        ps.setString(6, img.getAltura());
+        ps.setString(7, img.getLargura());
+        ps.setString(8, img.getIso());
+        ps.setString(9, img.getAbertura());
+        ps.setString(10, img.getVelocidade());
+        ps.setBinaryStream(11,(InputStream)fin,(int)imgfile.length());//Seta conteudo da imagem na quinta coluna da tabela 'img'
+        ps.setString(12, img.getMetadados());//Seta string com metadados da imagem na sétima coluna da tabela 'img'
+        ps.setString(13, img.getUrl());//Seta url da imagem na terceira coluna da tabela 'img'
+               
         ps.execute();//Executa a query para inserção no BD
     }
 

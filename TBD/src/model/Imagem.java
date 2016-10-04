@@ -128,7 +128,7 @@ public class Imagem {
                 else if(tag.getTagName().equals("Aperture Value")){                    
                     this.setAbertura(tag.getDescription());
                 }
-                else if(tag.getTagName().equals("ISO Speed Ratings")){                    
+                else if(tag.getTagName().equals("Shutter Speed Value")){                    
                     this.setVelocidade(tag.getDescription());
                 }                
             }
@@ -138,7 +138,7 @@ public class Imagem {
                 }
             }
         }
-        System.out.println(dados);
+      //  System.out.println(dados);
         this.setMetadados(dados);
     }
     
