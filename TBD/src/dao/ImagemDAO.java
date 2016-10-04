@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import model.Imagem;
 
 public class ImagemDAO {    
@@ -22,7 +23,7 @@ public class ImagemDAO {
         File imgfile = new File(img.getUrl());//Cria um arquivo com o path dado(no caso uma imagem)
         FileInputStream fin = new FileInputStream(imgfile);//Cria um objeto da classe FileInputStream com o arquivo criado
         
-        ps = Conexao.conexao.prepareStatement("INSERT INTO img VALUES (?, ?, ?, ?, ?, ?, ?)");//Prepara a query de inserção
+        ps = Conexao.conexao.prepareStatement("INSERT INTO img VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");//Prepara a query de inserção
         ps.setInt(1, 0);//Seta o valor do ID(no caso é desnecessário. Feito só pra nada mesmo)
         ps.setString(2, img.getNome());////Seta nome da imagem na segunda coluna da tabela 'img'
         ps.setString(3, img.getUrl());//Seta url da imagem na terceira coluna da tabela 'img'
@@ -30,6 +31,13 @@ public class ImagemDAO {
         ps.setBinaryStream(5,(InputStream)fin,(int)imgfile.length());//Seta conteudo da imagem na quinta coluna da tabela 'img'
         ps.setLong(6, img.getTamanho());//Seta tamanho da imagem na sexta coluna da tabela 'img'
         ps.setString(7, img.getMetadados());//Seta string com metadados da imagem na sétima coluna da tabela 'img'
+        ps.setString(8, img.getAltura());
+        ps.setString(9, img.getLargura());
+        ps.setString(10, img.getCriacao());
+        ps.setString(11, img.getIso());
+        ps.setString(12, img.getAbertura());
+        ps.setString(13, img.getVelocidade());
+        
         ps.execute();//Executa a query para inserção no BD
     }
 
@@ -49,9 +57,15 @@ public class ImagemDAO {
         img.setConteudo(rs.getBlob("conteudo"));
         img.setTamanho(rs.getLong("tamanho"));
         img.setMetadados(rs.getString("propriedades"));////Seta metadados da imagem com valor retornado do banco
+        img.setAltura(rs.getString("altura"));
+        img.setLargura(rs.getString("largura"));
+        img.setCriacao(rs.getString("criacao"));
+        img.setIso(rs.getString("iso"));
+        img.setAbertura(rs.getString("abertura"));
+        img.setVelocidade(rs.getString("velocidade"));
         
-        //System.out.println(img.getMetadados());
-        
+        System.out.println(img.getMetadados());
+        //JOptionPane.showMessageDialog(null, img.getMetadados());        
         return img;
     }
 }

@@ -9,6 +9,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.FileNameMap;
 import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.sql.Blob;
 
 public class Imagem {
@@ -19,7 +23,61 @@ public class Imagem {
     private long tamanho;
     private String nome;
     private String metadados;
+    private String largura = "";
+    private String altura = "";
+    private String criacao = "";
+    private String iso = "";
+    private String abertura = "";
+    private String velocidade = "";
 
+    public String getLargura() {
+        return largura;
+    }
+
+    public void setLargura(String largura) {
+        this.largura = largura;
+    }
+
+    public String getAltura() {
+        return altura;
+    }
+
+    public void setAltura(String altura) {
+        this.altura = altura;
+    }
+
+    public String getCriacao() {
+        return criacao;
+    }
+
+    public void setCriacao(String criacao) {
+        this.criacao = criacao;
+    }
+
+    public String getIso() {
+        return iso;
+    }
+
+    public void setIso(String iso) {
+        this.iso = iso;
+    }
+
+    public String getAbertura() {
+        return abertura;
+    }
+
+    public void setAbertura(String abertura) {
+        this.abertura = abertura;
+    }
+
+    public String getVelocidade() {
+        return velocidade;
+    }
+
+    public void setVelocidade(String velocidade) {
+        this.velocidade = velocidade;
+    }
+    
     public int getId() {
         return id;
     }
@@ -47,6 +105,10 @@ public class Imagem {
     //Recebe o caminho absoluto da imagem e joga numa string todas os metadados da imagem
     public void salvarMetadados(String url) throws ImageProcessingException, IOException{
         File imagem = new File(url);
+        
+        BasicFileAttributes bfa = Files.readAttributes(Paths.get(url), BasicFileAttributes.class);
+        this.setCriacao(bfa.creationTime().toString());
+        
         Metadata metadata = ImageMetadataReader.readMetadata(imagem);
         String dados = "";
         for (Directory directory : metadata.getDirectories()) {
@@ -54,6 +116,21 @@ public class Imagem {
                 if(!tag.getTagName().equals("XML Data")){
                     dados += tag.getTagName() + ": " + tag.getDescription() + ";\n";
                 }
+                if(tag.getTagName().equals("Image Height")){
+                    this.setAltura(tag.getDescription());
+                }
+                else if(tag.getTagName().equals("Image Width")){
+                    this.setLargura(tag.getDescription());
+                }
+                else if(tag.getTagName().equals("ISO Speed Ratings")){                    
+                    this.setIso(tag.getDescription());
+                }
+                else if(tag.getTagName().equals("Aperture Value")){                    
+                    this.setAbertura(tag.getDescription());
+                }
+                else if(tag.getTagName().equals("ISO Speed Ratings")){                    
+                    this.setVelocidade(tag.getDescription());
+                }                
             }
             if (directory.hasErrors()) {
                 for (String error : directory.getErrors()) {
@@ -61,6 +138,7 @@ public class Imagem {
                 }
             }
         }
+        System.out.println(dados);
         this.setMetadados(dados);
     }
     

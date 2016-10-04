@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Set-2016 às 18:33
+-- Generation Time: 04-Out-2016 às 03:54
 -- Versão do servidor: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -33,7 +33,13 @@ CREATE TABLE `img` (
   `extensao` varchar(20) NOT NULL,
   `conteudo` longblob NOT NULL,
   `tamanho` bigint(20) NOT NULL,
-  `propriedades` longtext NOT NULL
+  `propriedades` longtext NOT NULL,
+  `altura` varchar(100) NOT NULL,
+  `largura` varchar(100) NOT NULL,
+  `criacao` varchar(50) NOT NULL,
+  `iso` varchar(200) NOT NULL,
+  `abertura` varchar(200) NOT NULL,
+  `velocidade` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -54,7 +60,7 @@ ALTER TABLE `img`
 -- AUTO_INCREMENT for table `img`
 --
 ALTER TABLE `img`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
