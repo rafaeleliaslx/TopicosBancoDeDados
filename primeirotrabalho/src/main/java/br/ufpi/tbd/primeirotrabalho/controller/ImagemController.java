@@ -5,6 +5,8 @@ import br.ufpi.tbd.primeirotrabalho.dao.ImagemDAO;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import br.ufpi.tbd.primeirotrabalho.model.Imagem;
 
 public class ImagemController {
@@ -18,4 +20,13 @@ public class ImagemController {
     public Imagem getImg(int id) throws SQLException, ClassNotFoundException, IOException, ImageProcessingException{
         return idao.getImg(id);
     }
+
+	public ArrayList<Imagem> getAllImg() throws ClassNotFoundException, ImageProcessingException, SQLException, IOException {
+		return idao.getAllImg();
+	}
+
+	public void deletar(int id) throws ClassNotFoundException, SQLException {
+		idao.deletaImg(id);
+	}
+    
 }

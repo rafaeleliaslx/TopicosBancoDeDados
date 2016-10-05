@@ -10,6 +10,8 @@ import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import br.ufpi.tbd.primeirotrabalho.model.Imagem;
 
@@ -70,4 +72,37 @@ public class ImagemDAO {
         //JOptionPane.showMessageDialog(null, img.getMetadados());        
         return img;
     }
+
+	public ArrayList<Imagem> getAllImg() throws ClassNotFoundException, SQLException, ImageProcessingException, IOException {
+		Conexao.conectar();//Conecta ao BD
+        String query = "SELECT * FROM img";//Criando query
+        ps = Conexao.conexao.prepareStatement(query);//Prepara query
+        ResultSet rs = ps.executeQuery(query);//Executa query e joga resultado na variavel 'rs'
+        ArrayList<Imagem> list = new ArrayList<>();
+        while(rs.next()){
+        	Imagem img = new Imagem(rs.getString("url"));//Cria um objeto imagem
+        	img.setId(rs.getInt("id"));
+        	img.setNome(rs.getString("nome"));//Seta nome da imagem com valor retornado do banco
+        	img.setUrl(rs.getString("url"));
+        	img.setExtensao(rs.getString("extensao"));
+        	img.setConteudo(rs.getBlob("conteudo"));
+        	img.setTamanho(rs.getLong("tamanho"));
+        	img.setMetadados(rs.getString("propriedades"));////Seta metadados da imagem com valor retornado do banco
+        	img.setAltura(rs.getString("altura"));
+        	img.setLargura(rs.getString("largura"));
+        	img.setCriacao(rs.getString("criacao"));
+        	img.setIso(rs.getString("iso"));
+        	img.setAbertura(rs.getString("abertura"));
+        	img.setVelocidade(rs.getString("velocidade"));
+        	list.add(img);
+        }
+		return list;
+	}
+
+	public void deletaImg(int id) throws ClassNotFoundException, SQLException {
+		Conexao.conectar();//Conecta ao BD
+		String query = "DELETE FROM img where id = " + id;//Criando query
+        ps = Conexao.conexao.prepareStatement(query);//Prepara query
+        ps.execute();
+	}
 }
